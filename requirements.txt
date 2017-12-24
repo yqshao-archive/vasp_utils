@@ -1,0 +1,3 @@
+ase
+nglview
+git+https://github.com/yqshao/vasp.git

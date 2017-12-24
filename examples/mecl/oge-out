@@ -1,0 +1,47 @@
+Running VASP on mc-1-201, using 12 of 12 cores
+mpiexec.hydra -np 12 /home/mcpe/vasp_utils/vasp_bin/vasp54_sol_vtst/vasp_std > /home/shaoyunqi/mecl/vasp_out
+ LAECHG = .TRUE.
+Atoms in file1: 5, Atoms in file2: 5
+Points in file1: 1404928, Points in file2: 1404928
+
+  GRID BASED BADER ANALYSIS  (Version 0.95a 02/26/16)
+
+  OPEN ... CHGCAR              
+  VASP5-STYLE INPUT FILE
+  DENSITY-GRID:  112 x 112 x 112
+  CLOSE ... CHGCAR              
+  RUN TIME:    0.37 SECONDS
+
+  OPEN ... CHGCAR_sum          
+  VASP5-STYLE INPUT FILE
+  DENSITY-GRID:  112 x 112 x 112
+  CLOSE ... CHGCAR_sum          
+  RUN TIME:    0.37 SECONDS
+
+  CALCULATING BADER CHARGE DISTRIBUTION
+                 0  10  25  50  75  100
+  PERCENT DONE:  ********************** 
+
+  REFINING AUTOMATICALLY
+  ITERATION: 1
+  EDGE POINTS:         38759
+  REASSIGNED POINTS:    1560
+  ITERATION: 2
+  CHECKED POINTS:      15220
+  REASSIGNED POINTS:       0
+
+  RUN TIME:       0.42 SECONDS
+
+  CALCULATING MINIMUM DISTANCES TO ATOMS
+                 0  10  25  50  75  100
+  PERCENT DONE:  **********************
+  RUN TIME:    0.06 SECONDS
+
+  WRITING BADER ATOMIC CHARGES TO ACF.dat
+  WRITING BADER VOLUME CHARGES TO BCF.dat
+
+  NUMBER OF BADER MAXIMA FOUND:              5
+      SIGNIFICANT MAXIMA FOUND:              5
+                 VACUUM CHARGE:         0.0368
+           NUMBER OF ELECTRONS:       14.00000
+ 
