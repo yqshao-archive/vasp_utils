@@ -1,0 +1,2 @@
+Running VASP on mc-1-210, using 12 of 12 cores
+mpiexec.hydra -np 12 /home/mcpe/vasp_utils/vasp_bin/vasp54_sol_vtst/vasp_std > /home/shaoyunqi/mecl-vib/vasp_out

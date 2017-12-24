@@ -1,0 +1,31 @@
+#$ -S /bin/bash
+#$ -o /home/shaoyunqi/mecl-vib/oge-out
+#$ -e /home/shaoyunqi/mecl-vib/oge-err
+
+# Environment setting
+cd /home/shaoyunqi/mecl-vib
+/home/mcpe/vasp_utils/intel/parallel_studio_xe_2016.1.056/bin/psxevars.sh intel64 > /dev/null
+VASPBIN=/home/mcpe/vasp_utils/vasp_bin/vasp54_sol_vtst/vasp_std
+
+# calculate the number of cores to use
+HN=`echo $HOSTNAME | sed "s/.local//g"`
+n_slot_tot=`qhost -q -h $HN | grep tw | awk '{split($3,a,"/"); print a[2]}'`
+n_slot_use=1
+n_core_tot=`qhost | grep $HN | awk '{print $3}'`
+n_core_use=`echo "$n_slot_use * $n_core_tot / $n_slot_tot" | bc`
+
+# If running NEB, adjust the nore number
+n_img=`grep IMAGES INCAR | awk '{print $3}'`
+[ "$n_img" == "" ] || n_core_use=`echo "$n_core_use / $n_img * $n_img" | bc`
+
+# run it
+echo "Running VASP on $HN, using $n_core_use of $n_core_tot cores"
+export OMP_NUM_THREADS=1
+echo "mpiexec.hydra -np $n_core_use $VASPBIN > /home/shaoyunqi/mecl-vib/vasp_out"
+mpiexec.hydra -np $n_core_use $VASPBIN > /home/shaoyunqi/mecl-vib/vasp_out
+
+#automatically run analysis if AECCAR is written
+grep AEC INCAR \
+    && /home/mcpe/vasp_utils/VTST_scripts/chgsum.pl AECCAR0 AECCAR2\
+    && /home/mcpe/vasp_utils/Bader/bader CHGCAR -ref CHGCAR_sum
+#end
