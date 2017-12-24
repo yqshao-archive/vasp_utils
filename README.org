@@ -1,10 +1,12 @@
 * VASP Utils
-A set of scripts i used to manage vasp calculations on our cluster
-** dependencies
-- jupyter/jupyterhub
-- ase
-- vasp
-- nglview (for visualization)
+A set of scripts and functions I used to manage vasp calculations on our cluster
+
+[[https://mybinder.org/v2/gh/yqshao/vasp_utils/master?filepath=NotebookExample.ipynb][See it in binder]]
+** Dependencies
+- [[https://github.com/jupyter/notebook][jupyter]]/[[https://github.com/jupyterhub/jupyterhub][jupyterhub]]
+- [[https://gitlab.com/ase/ase/tree/master/ase][ase]]
+- [[https://github.com/jkitchin/vasp][vasp]] (to handle the job queuing in the cluster)
+- [[https://github.com/arose/nglview][nglview]] (for visualization)
 ** vasp_utils.py
 helper functions to visualize and setup calculations
 ** vasp_script.sh
