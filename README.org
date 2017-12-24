@@ -1,0 +1,11 @@
+* VASP Utils
+A set of scripts i used to manage vasp calculations on our cluster
+** dependencies
+- jupyter/jupyterhub
+- ase
+- vasp
+- nglview (for visualization)
+** vasp_utils.py
+helper functions to visualize and setup calculations
+** vasp_script.sh
+queue script for Gridengine,
