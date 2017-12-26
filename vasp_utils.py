@@ -19,20 +19,20 @@ os.environ['VASP_PP_PATH']=os.path.abspath('examples/fakePotentials/')+'/'
 
 def show_charge(calc):
     calc.bader()
-    v=show_atoms(calc.atoms)
+    v=show_atoms(calc.atoms,dis=False)
     v.add_label(color='black',scale=0.5,labelType='text',
                 labelText=['%.2f'%c for c in calc.get_charges()],
                 zOffset=1.2,attachment='middle_center')
-    return v
+    display(v)
 
 def show_magmom(calc):
-    v=show_atoms(calc.atoms)
+    v=show_atoms(calc.atoms,dis=False)
     v.add_label(color='black',scale=0.5,labelType='text',
                 labelText=['%.2f'%c for c in calc.get_magnetic_moments()],
                 zOffset=1.2,attachment='middle_center')
-    return v
+    display(v)
 
-def show_atoms(atoms):
+def show_atoms(atoms,dis=True):
     import nglview
     v = nglview.show_ase(atoms)
     v.clear_representations()
@@ -42,10 +42,13 @@ def show_atoms(atoms):
 
     v.parameters = dict(clipDist=-100, sampleLevel=2)
     v.control.spin([1,0,0],3.14*1.5)
-    return v
+    if dis:
+        display(v)
+    else:
+        return v
 
 
-def show_traj(traj):
+def show_traj(traj,dis=True):
     # traj can be list of atoms
     import nglview
     v = nglview.show_asetraj(traj)
@@ -55,7 +58,10 @@ def show_traj(traj):
     v.add_spacefill(radius_type='vdw',scale=0.5,
                     roughness=1,metalness=0)
     v.parameters = dict(clipDist=-100, sampleLevel=2)
-    return v
+    if dis:
+        display(v)
+    else:
+        return v
 
 def show_vib(calc,mode=-1,amplitude=1,info=True):
     freqs,modes = calc.get_vibrational_modes()
@@ -80,7 +86,7 @@ def show_vib(calc,mode=-1,amplitude=1,info=True):
         image = calc.atoms.copy()
         image.set_positions(image.positions+i*modes[mode]*amplitude)
         traj.append(image)
-    return show_traj(traj)
+    display(show_traj(traj,dis=False))
 
 
 def form_traj(atoms,mode,amplitude):
