@@ -1,3 +1,4 @@
 ase
 nglview
+jupyter_contrib_nbextensions
 git+https://github.com/yqshao/vasp.git
