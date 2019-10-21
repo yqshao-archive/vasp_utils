@@ -37,7 +37,7 @@ def show_atoms(atoms,dis=True):
     v = nglview.show_ase(atoms)
     v.clear_representations()
     v.add_unitcell()
-    v.add_spacefill(radius_type='vdw',scale=0.5,
+    v.add_spacefill(radius_type='vdw', radius_scale=0.5,
                     roughness=1,metalness=0)
 
     v.parameters = dict(clipDist=-100, sampleLevel=2)
@@ -55,7 +55,7 @@ def show_traj(traj,dis=True):
     v.clear_representations()
     # it seems that nglview traj cannot handle unit cell right now
     #v.add_unitcell()
-    v.add_spacefill(radius_type='vdw',scale=0.5,
+    v.add_spacefill(radius_type='vdw',radius_scale=0.5,
                     roughness=1,metalness=0)
     v.parameters = dict(clipDist=-100, sampleLevel=2)
     if dis:
@@ -117,7 +117,7 @@ def show_vibs(calc,amplitude=1):
 
     v=nglview.show_asetraj([calc.atoms])
     v.clear_representations()
-    v.add_spacefill(radius_type='vdw',scale=0.5,
+    v.add_spacefill(radius_type='vdw',radius_scale=0.5,
                     roughness=1,metalness=0)
     v._set_size('450px','300px')
     v.camera='orthographic'
